@@ -22,29 +22,32 @@ Além disso, através da utilização do "cron", é possível automatizar comple
 
 ### Arquitetura do projeto
 
-Provide a conceptual diagram explaining how the project works under the hood. 
-Describe the main components, data flow, and technologies used.
+O diagrama a seguir ilustra como o projeto funciona:
 
-[ cron ] <br/>
-    ↓ <br/>
-[ Script Bash ] <br/>
-    ↓ <br/>
-[ Backup .tar.gz ] <br/>
-    ↓ <br/>
-[ Pasta sincronizada ] <br/>
-    ↓ <br/>
-[ Nextcloud Desktop Client ] <br/>
-    ↓ <br/>
-[ Servidor Nextcloud ] <br/>
+<p align="center">
+  <img src="assets/Projeto2.drawio.png" alt="Arquitetura do projeto (esquema)" width="300"/>
+</p>
+
+O diagrama anterior descreve a arquitetura do nosso projeto, começando pelo **Frontend**, que consiste na interface com a qual o utilizador interage. É nesta camada que o utilizador realiza as ações pretendidas para obter as informações ou funcionalidades disponibilizadas pelo sistema. Estas ações são convertidas em pedidos HTTP, que são posteriormente enviados para o backend.
+
+O **Spring Boot (Controller)** é responsável por receber os pedidos HTTP provenientes do Frontend. Ao receber um pedido, extrai os parâmetros necessários e encaminha a informação para a camada seguinte, denominada **Service Layer**.
+
+Ao chegarmos ao **Service Layer**, encontramos a lógica de negócio da aplicação. É nesta camada que são tomadas decisões como verificar se um filme já existe na base de dados, determinar se deve ser guardado, processar e transformar dados recebidos ou decidir qual a API externa a consultar. Em outras palavras, esta camada coordena e gere o funcionamento interno da aplicação.
+
+De seguida, o fluxo passa para o **JPA Repository**, responsável pelo acesso e gestão dos dados. Esta camada funciona como intermediária entre a lógica de negócio e a base de dados, permitindo guardar, consultar, atualizar e remover informação sem necessidade de escrever consultas SQL manualmente.
+
+Por fim, encontramos o **PostgreSQL**, onde os dados são armazenados de forma permanente. Desta maneira, mesmo após o encerramento ou reinício da aplicação, toda a informação guardada continua disponível para futuras utilizações.
 
 ### Arquitetura do repositório
+
+O diagrama seguinte demostra a esquematização/organização do repositório deste trabalho, sendo que na pasta "assents" encontram-se todas as imagens relativas a este projeto e na pasta "scripts" temos todos os códigos necessários para o funcionamento do projeto. Todas estas pastas estam localizadas numa outra chamada "projeto-02-132807_132909_tema04", que também contem os ficheiros "README.md"  e "LICENSE".
 
 detiaveiro/ <br/>
 │ <br/>
 └── projecto-02-132807_132909_tema04/ <br/>
     │ <br/>
     ├── assets/ <br/>
-    │   └── -.png <br/>
+    │   └── Projeto2.drawio.png <br/>
     │ <br/>
     ├── scripts/ <br/>
     │   └── -.sh <br/>
@@ -97,28 +100,6 @@ crontab -e
 1. Step one (e.g., clone the repository)
 2. Step two (e.g., install dependencies)
 3. Step three (e.g., command to run the application)
-
-## Avaliação
-
-Describe the evaluation process conducted to verify that the project functions correctly. 
-Plots and graphs are highly welcome to demonstrate the execution and performance of the project. 
-At a minimum, you should include screenshots of the working solution.
-
-Aqui o professor quer:
-
-- provas
-- testes
-- funcionamento
-
-*Note: I will use this section to keep track of the grading for the projects.*
-
-| Component           | Description                                                                    | Value |
-| :------------------ | :----------------------------------------------------------------------------- | ----: |
-| Code quality        | How well the project is coded and documented.                                  |   0.2 |
-| Repository quality  | How well the repository is structured and organized.                           |   0.1 |
-| Project functional  | Whether the project achieves the desired objectives.                           |   0.3 |
-| Solution quality    | How effective and creative the solution is (AI-based solutions are penalized). |   0.3 |
-| Additional features | If the students have added additional features not requested in the guide.     |   0.1 |
 
 ## Autores
 
