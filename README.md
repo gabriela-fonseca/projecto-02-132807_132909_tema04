@@ -42,6 +42,7 @@ Por fim, encontramos o **PostgreSQL**, onde os dados são armazenados de forma p
 
 O diagrama seguinte demostra a esquematização/organização do repositório deste trabalho, sendo que na pasta "assents" encontram-se todas as imagens relativas a este projeto e na pasta "scripts" temos todos os códigos necessários para o funcionamento do projeto. Todas estas pastas estam localizadas numa outra chamada "projeto-02-132807_132909_tema04", que também contem os ficheiros "README.md"  e "LICENSE".
 
+``
 detiaveiro/ <br/>
 │ <br/>
 └── projecto-02-132807_132909_tema04/ <br/>
@@ -54,6 +55,7 @@ detiaveiro/ <br/>
     │ <br/>
     ├── README.md <br/>
     └── LICENSE <br/>
+```
 
 ## Configuração e execução
 
