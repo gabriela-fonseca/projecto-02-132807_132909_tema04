@@ -1,21 +1,20 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xN-SHTD1)
 # [Gestor de Biblioteca de Media com Metadados Automatizados]
 
-Cada vez mais, a realização de backups dos ficheiros armazenados nos computadores torna-se essencial. Com a constante evolução tecnológica, torna-se também mais fácil para utilizadores mal-intencionados obterem acesso a informações confidenciais, trabalhos pessoais e outros dados importantes presentes nos sistemas informáticos. Para além do risco de roubo de informação, existe igualmente a possibilidade de eliminação acidental de ficheiros, seja por falhas do sistema ou por erro humano. Neste contexto, torna-se importante a existência de sistemas automáticos que garantam a segurança e preservação dos dados, reduzindo a necessidade de intervenção manual e evitando possíveis esquecimentos na realização de backups.
+Com tanto informação, seja de assuntos sérios, como trabalhos científicos, reportagens, ... ou de assuntos menos importantes como, livros, filmes (ou suas caracteristicas), informações de jogos, ..., o user necessita cada vez mai de organizar todos estes conteúdos digitais. Apesar disso, não é fáciel reunir toda a informação dispersa pela internet, quanto mais organizá-la. Mesmo asim, continua a ser importe a criação de um sistema centralizado para gestão de bibliotecas pessoais. 
+Neste contexto, o nosso projeto aborda o desenvolvimento de uma aplicação de gestão de biblioteca de media (filmes e/ou livros). Nesta é possivel adicionar títulos pelo utilizador com enriquecimento automático de dados...
 
-O projeto “Backup Automatizado para o Nextcloud” consiste no desenvolvimento de um sistema de backup automatizado utilizando Bash scripting. O sistema tem como principal função recolher os ficheiros definidos pelo utilizador e comprimi-los num único ficheiro no formato ".tar.gz". Posteriormente, o backup gerado é armazenado numa pasta sincronizada pelo Nextcloud Desktop Client, executado através do Docker.
-
-![Bash scripting](assets/bash_scripting.png)
-![Docker](assets/docker.png)
-![Ficheiro ".tar.gz"](assets/ficheiro_comprimido.png)
-
-Uma vez que esta pasta se encontra monitorizada pelo cliente Nextcloud, sempre que um novo ficheiro é adicionado, este é automaticamente sincronizado com o servidor remoto. Desta forma, o sistema garante simultaneamente um backup local e um backup na cloud, aumentando a segurança e disponibilidade dos dados armazenados.
-
-![Servidor Nextcloud e local (ambos com backups)](assets/servidores.png)
-
-Além disso, através da utilização do "cron", é possível automatizar completamente a execução do sistema, permitindo que os backups sejam realizados em horários previamente definidos pelo utilizador. Para a implementação deste projeto são utilizadas tecnologias como Docker, Nextcloud, Bash scripting e cron.
-
-![Docker](assets/cron.png)
+Integração com APIs externas como a The Movie Database e a Google Books
+Recolha automática de metadados como sinopse, imagem da capa/poster, avaliação e data de lançamento
+Armazenamento da informação numa base de dados SQL
+Organização e persistência dos dados da biblioteca pessoal
+Possibilidade de pesquisa e filtragem de conteúdos
+Interface gráfica em formato de galeria visual
+Experiência semelhante a plataformas de streaming
+Funcionalidades de pesquisa e filtros por tipo, rating ou ano
+Projeto full-stack com integração de APIs REST
+Aplicação de conceitos de base de dados e desenvolvimento web
+Possibilidade de expansão com funcionalidades como favoritos, tags e recomendações
 
 ## Arquitetura
 
