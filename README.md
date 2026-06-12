@@ -50,7 +50,9 @@ detiaveiro/
     │   └── Projeto2.drawio.png
     │
     ├── scripts/
-    │   └── -.sh
+    │   └── backend
+    │       ├── main.py
+    │       
     │ 
     ├── README.md
     └── LICENSE
@@ -90,12 +92,10 @@ crontab -e
 (visitar o sait https://crontab.guru/#*_*_*_*_* para ajuda)
 
 ### Pré-requisitos
-* Docker;
-* NextCloud ( servidor pessoal ou outro );
-* Bash;
-* cron;
-* Linux environment (Ubuntu/Debian recomendado);
-
+* Integração de APIs Externas;
+* SQL;
+* Metadados Multimédia;
+* Docker.
 
 ### Execução
 1. Step one (e.g., clone the repository)
