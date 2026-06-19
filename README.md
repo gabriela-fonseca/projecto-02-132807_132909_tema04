@@ -1,11 +1,11 @@
 # [Gestor de Biblioteca de Media com Metadados Automatizados]
 
-Com tanta informação digital, seja de assuntos sérios, como trabalhos científicos, reportagens, ... ou de assuntos menos importantes como livros, filmes (ou suas caracteristicas), informações de jogos, ..., os utilizadores necessitam cada vez mais de organizar todos estes conteúdos digitais. Apesar disso, não é fácil reunir toda a informação dispersa pela internet, quanto mais organizá-la. Mesmo assim, continua a ser importante a criação de um sistema centralizado para gestão de bibliotecas pessoais. 
+Com tanta informação digital, seja de assuntos sérios, como trabalhos científicos, reportagens... ou de assuntos menos importantes como livros, filmes (ou suas características), informações de jogos... os utilizadores necessitam cada vez mais de organizar todos estes conteúdos digitais. Apesar disso, não é fácil reunir toda a informação dispersa pela internet, quanto mais organizá-la. Mesmo assim, continua a ser importante a criação de um sistema centralizado para gestão de bibliotecas pessoais. 
 Neste contexto, este projeto aborda o desenvolvimento de uma aplicação de gestão de biblioteca de media (filmes e/ou livros). Nesta é possivel adicionar títulos pelo utilizador com enriquecimento automático de dados.
 
-Para este projeto foram escolhidas as APIs externas The Movie Database (TMDB) e Google Books, para organização de filmes e livros, respetivamente. O gestor de biblioteca de media com metadados automatizados utiliza a respetiva API externa, por exemplo a The Movie Database para filmes, para organizar uma biblioteca com os filmes do utilizador, armazenando os metadados ricos desse filme como o título, género, cartaz, sinopse, etc... Isto é feito através de código backend escrito em Python (linguagem escolhida por nós, mas também podia ser em Java ou outra linguagem de programação adequada), um ficheiro Docker, e uma base de dados SQL que é responsável por armazenar os filmes (ou livros) e os seus metadados.
+Para este projeto foram escolhidas as APIs externas The Movie Database (TMDB) e Google Books, para organização de filmes e livros, respetivamente. O gestor de biblioteca de media com metadados automatizados utiliza a respetiva API externa, por exemplo a The Movie Database para filmes, para organizar uma biblioteca com os filmes do utilizador, armazenando os metadados ricos desse filme como o título, género, cartaz, sinopse, etc... Isto é feito através de código backend escrito em Python (linguagem escolhida por nós, mas também podia ser em Java ou outra linguagem de programação adequada), ficheiros Docker, e uma base de dados SQL que é responsável por armazenar os filmes (ou livros) e os seus metadados.
 
-Quando ao frontend, este fornece a parte visual do gestor de biblioteca, a parte que o utilizador realmente vê. Além de mostrar os filmes armazenados numa galeria visual, também é possível utilizar uma ferramenta de pesquisa com função de filtros, para pesquisar por filmes, por exemplo, lançados em uma certa data, ou de um género específico, etc... Esta ferramente de pesquisa com filtros funciona de forma semelhante a uma plataforma de streaming, facilitando ao utilizador encontrar o filme que pretende, ou procurar por filmes dentro de uma certa categoria. Para desenvolver esta galeria visual, utilizam-se linguagens de programação como HTML (para criar o "corpo" dessa galeria), JavaScript (para programar funções como a de pesquisa com filtros) e CSS (para embelezar a galeria visual).
+Quando ao frontend, este fornece a parte visual do gestor de biblioteca, a parte que o utilizador realmente vê. Além de mostrar os filmes armazenados numa galeria visual, também é possível utilizar uma ferramenta de pesquisa com função de filtros, para pesquisar por filmes, por exemplo, lançados em uma certa data, ou de um género específico, etc... Esta ferramente de pesquisa com filtros funciona de forma semelhante a uma plataforma de streaming, facilitando ao utilizador encontrar o filme que pretende, ou procurar por filmes dentro de uma certa categoria. Para desenvolver esta galeria visual, utilizam-se linguagens de programação como HTML (para criar o "corpo" dessa galeria), JavaScript (para programar funções como a de pesquisa com filtros) e CSS (para embelezar a galeria visual). Também escolhemos usar a biblioteca de JavaScript ReactJS, para facilitar o seu desenvolvimento.
 
 Integração com APIs externas como a The Movie Database e a Google Books
 Recolha automática de metadados como sinopse, imagem da capa/poster, avaliação e data de lançamento
@@ -88,25 +88,6 @@ detiaveiro/
     └── LICENSE
 ```
 
-```
-detiaveiro/ 
-│ 
-└── projecto-02-132807_132909_tema04/
-    │
-    ├── assets/
-    │   
-    │
-    ├── scripts/
-    │   
-    │   
-    │       
-    │ 
-    ├── README.md
-    └── LICENSE
-```
-
-<!-- Como nos scripts há muitas pastas, eu pensei em deixar a arquitetura só assim e fazer só menção ao conteúdo dentro das pastas. Escolhe qual é que achas melhor. -->
-
 ### Pré-requisitos
 * Integração de APIs Externas;
 * SQL;
@@ -114,9 +95,16 @@ detiaveiro/
 * Docker.
 
 ### Execução
-1. Step one (e.g., clone the repository)
-2. Step two (e.g., install dependencies)
-3. Step three (e.g., command to run the application)
+
+A lista a seguir explica cada passo que o programa faz durante a sua execução.
+
+1. Após o utilizador fazer um pedido, como por exemplo, adicionar um filme à biblioteca, o ficheiro Docker é executado e, se não houver nenhum erro, ele liga-se à base de dados (database.py e main.py).
+2. O programa vai buscar as informações necessárias, ou seja, os metadados do filme que o utilizador pretende adicionar, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
+3. Também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
+4. O ficheiro schemas.py reúne todos esses dados e adiciona o filme.
+5. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py.
+6. Ainda no crud.py, se o utilizador pretender pesquisar por um filme, pode usar a função de pesquisa.
+7. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
 
 ## Autores
 
