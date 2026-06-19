@@ -48,13 +48,36 @@ O diagrama seguinte demonstra a esquematização/organização do repositório d
 detiaveiro/ 
 │ 
 └── projecto-02-132807_132909_tema04/
+    |
+    ├── .vscode/
+    |    └── settings.json
     │
     ├── assets/
-    │   └── Projeto2.drawio.png
+    |    └── Projeto2.drawio.png
+    │   
     │
     ├── scripts/
-    │   └── backend
-    │       ├── main.py
+    │   └── backend/
+    |        ├──biblioteca-digital/
+    │        ├── app/
+    |        |   |
+    |        │   ├── __init__.py
+    |        │   ├── main.py              # ponto de entrada FastAPI
+    |        │   ├── database.py          # ligação à base de dados
+    |        │   ├── models.py             # modelos SQLAlchemy (tabelas)
+    |        │   ├── schemas.py            # modelos Pydantic (validação)
+    |        │   ├── crud.py                # operações na base de dados
+    |        │   ├── tmdb_client.py         # cliente da API externa TMDB
+    |        │   └── routers/
+    |        │       ├── filmes.py
+    |        │       └── pesquisa.py
+    |        |  
+    |        ├── requirements.txt
+    |        ├── Dockerfile
+    |        ├── docker-compose.yml
+    |        └── .env
+    │   
+    │   
     │       
     │ 
     ├── README.md
