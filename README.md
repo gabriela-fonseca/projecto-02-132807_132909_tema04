@@ -68,10 +68,14 @@ detiaveiro/
     |        │   ├── schemas.py            # modelos Pydantic (validação)
     |        │   ├── crud.py                # operações na base de dados
     |        │   ├── tmdb_client.py         # cliente da API externa TMDB
-    |        │   └── routers/
-    |        │       ├── filmes.py
-    |        │       └── pesquisa.py
-    |        |  
+    |        │   ├── routers/
+    |        │   |   ├── filmes.py
+    |        │   |   └── pesquisa.py
+    |        |   └── __pycache__/
+    |        │ 
+    |        ├── venv/
+    |        │    | (...)
+    |        |   
     |        ├── requirements.txt
     |        ├── Dockerfile
     |        ├── docker-compose.yml
