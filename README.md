@@ -54,35 +54,36 @@ detiaveiro/
     │
     ├── assets/
     |    └── Projeto2.drawio.png
-    │   
-    │
+    │  
     ├── scripts/
     │   └── backend/
     |        ├──biblioteca-digital/
-    │        ├── app/
-    |        |   |
-    |        │   ├── __init__.py
-    |        │   ├── main.py              # ponto de entrada FastAPI
-    |        │   ├── database.py          # ligação à base de dados
-    |        │   ├── models.py             # modelos SQLAlchemy (tabelas)
-    |        │   ├── schemas.py            # modelos Pydantic (validação)
-    |        │   ├── crud.py                # operações na base de dados
-    |        │   ├── tmdb_client.py         # cliente da API externa TMDB
-    |        │   ├── routers/
-    |        │   |   ├── filmes.py
-    |        │   |   └── pesquisa.py
-    |        |   └── __pycache__/
-    |        │ 
-    |        ├── venv/
-    |        │    | (...)
-    |        |   
+    │        |   ├── app/
+    |        |   |   |
+    |        |   │   ├── __init__.py
+    |        |   │   ├── main.py              # ponto de entrada FastAPI
+    |        |   │   ├── database.py          # ligação à base de dados
+    |        |   │   ├── models.py             # modelos SQLAlchemy (tabelas)
+    |        |   │   ├── schemas.py            # modelos Pydantic (validação)
+    |        |   │   ├── crud.py                # operações na base de dados
+    |        |   │   ├── tmdb_client.py         # cliente da API externa TMDB
+    |        |   │   ├── routers/
+    |        |   │   |   ├── __init__.py
+    |        |   │   |   ├── filmes.py
+    |        |   │   |   ├── pesquisa.py
+    |        |   │   |   └── __pycache__/
+    |        |   │   |         └── (...)
+    |        |   │   | 
+    |        |   |   └── __pycache__/
+    |        |   |       └── (...)
+    |        |   │ 
+    |        |   └── venv/
+    |        |        └── (...)
+    |        |  
     |        ├── requirements.txt
     |        ├── Dockerfile
     |        ├── docker-compose.yml
-    |        └── .env
-    │   
-    │   
-    │       
+    |        └── .env     
     │ 
     ├── README.md
     └── LICENSE
