@@ -56,8 +56,8 @@ detiaveiro/
     |    └── Projeto2.drawio.png
     │  
     ├── scripts/
-    │   └── backend/
-    |        ├──biblioteca-digital/
+    │   └── biblioteca-digital/
+    |        ├──backend/
     │        |   ├── app/
     |        |   |   |
     |        |   │   ├── __init__.py
@@ -76,14 +76,17 @@ detiaveiro/
     |        |   │   | 
     |        |   |   └── __pycache__/
     |        |   |       └── (...)
-    |        |   │ 
+    |        |   ├── requirements.txt
+    |        |   ├── Dockerfile
+    |        |   ├── docker-compose.yml
+    |        |   ├── .env
     |        |   └── venv/
     |        |        └── (...)
     |        |  
-    |        ├── requirements.txt
-    |        ├── Dockerfile
-    |        ├── docker-compose.yml
-    |        └── .env     
+    |        └── frontend/
+    |             ├── index.html
+    |             ├── style.css
+    |             └── app.js
     │ 
     ├── README.md
     └── LICENSE
