@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca de Filmes Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Biblioteca Digital</h1>
+  </header>
+
+  <section id="adicionar">
+    <h2>Adicionar Filme</h2>
+    <input type="text" id="campoPesquisa" placeholder="Pesquisa de filmes ...">
+    <button id="botaoPesquisar">Pesquisar</button>
+    <div id="resultadosPesquisa"></div>
+  </section>
+
+  <section id="filtros">
+    <input type="text" id="filtroTexto" placeholder="Filtrar filmes...">
+    <select id="filtroGenero">
+      <option value="">Géneros</option>
+      <option value="action">Ação</option>
+      <option value="drama">Drama</option>
+      <option value="comedy">Comédia</option>
+      <option value="thriller">Thriller</option>
+      <option value="scifi">Sci-Fi</option>
+      <option value="horror">Terror</option>
+    </select>
+  </section>
+
+  <section id="galeria">
+    <!-- os filmes vão aparecer aqui, gerados por JavaScript -->
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

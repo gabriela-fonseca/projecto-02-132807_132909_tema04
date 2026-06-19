@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0A0A0F;
+  color: #E8E8E8;
+  padding: 2rem;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+  color: #E50914;
+}
+
+section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #1A1A2E;
+  border-radius: 8px;
+}
+
+section h2 {
+  font-size: 16px;
+  margin-bottom: 0.75rem;
+  color: #D4AF37;
+}
+
+input, select, button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #252538;
+  color: #E8E8E8;
+  margin-right: 8px;
+}
+
+input::placeholder {
+  color: #888;
+}
+
+button {
+  background-color: #E50914;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #f40612;
+}
+
+#resultadosPesquisa {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resultado-card {
+  background-color: #252538;
+  border-radius: 6px;
+  padding: 8px;
+  width: 140px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.resultado-card:hover {
+  transform: translateY(-3px);
+}
+
+.resultado-card img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.resultado-card p {
+  font-size: 12px;
+  text-align: center;
+}
+
+#galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.filme-card {
+  background-color: #1E1E30;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.filme-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.filme-card .info {
+  padding: 8px;
+}
+
+.filme-card .titulo {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom:
