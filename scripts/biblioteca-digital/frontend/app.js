@@ -82,15 +82,27 @@ async function adicionarFilme(tmdbId) {
 
 // --- Carregar e mostrar a galeria principal ---
 
+// --- Filtros da biblioteca ---
+
 async function carregarGaleria() {
+  const texto = document.getElementById('filtroTexto').value.trim();
+  const genero = document.getElementById('filtroGenero').value;
+
+  const parametros = new URLSearchParams();
+  if (texto) parametros.append('pesquisa', texto);
+  if (genero) parametros.append('genero', genero);
+
   try {
-    const resposta = await fetch(`${API_URL}/filmes/`);
+    const resposta = await fetch(`${API_URL}/filmes/?${parametros.toString()}`);
     const dados = await resposta.json();
     mostrarGaleria(dados.filmes);
   } catch (erro) {
     console.error('Erro ao carregar galeria:', erro);
   }
 }
+
+document.getElementById('filtroTexto').addEventListener('input', carregarGaleria);
+document.getElementById('filtroGenero').addEventListener('change', carregarGaleria);
 
 function mostrarGaleria(filmes) {
   const container = document.getElementById('galeria');
@@ -116,5 +128,6 @@ function mostrarGaleria(filmes) {
 }
 
 // --- Carregar a galeria assim que a página abre ---
+
 
 carregarGaleria();
