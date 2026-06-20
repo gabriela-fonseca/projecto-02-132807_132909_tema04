@@ -87,10 +87,16 @@ async function adicionarFilme(tmdbId) {
 async function carregarGaleria() {
   const texto = document.getElementById('filtroTexto').value.trim();
   const genero = document.getElementById('filtroGenero').value;
+  const anoMin = document.getElementById('filtroAnoMin').value;
+  const anoMax = document.getElementById('filtroAnoMax').value;
+  const apenasFavoritos = document.getElementById('filtroFavoritos').checked;
 
   const parametros = new URLSearchParams();
   if (texto) parametros.append('pesquisa', texto);
   if (genero) parametros.append('genero', genero);
+  if (anoMin) parametros.append('ano_min', anoMin);
+  if (anoMax) parametros.append('ano_max', anoMax);
+  if (apenasFavoritos) parametros.append('apenas_favoritos', 'true');
 
   try {
     const resposta = await fetch(`${API_URL}/filmes/?${parametros.toString()}`);
@@ -101,8 +107,21 @@ async function carregarGaleria() {
   }
 }
 
+function limparFiltros() {
+  document.getElementById('filtroTexto').value = '';
+  document.getElementById('filtroGenero').value = '';
+  document.getElementById('filtroAnoMin').value = '';
+  document.getElementById('filtroAnoMax').value = '';
+  document.getElementById('filtroFavoritos').checked = false;
+  carregarGaleria();
+}
+
 document.getElementById('filtroTexto').addEventListener('input', carregarGaleria);
 document.getElementById('filtroGenero').addEventListener('change', carregarGaleria);
+document.getElementById('filtroAnoMin').addEventListener('input', carregarGaleria);
+document.getElementById('filtroAnoMax').addEventListener('input', carregarGaleria);
+document.getElementById('filtroFavoritos').addEventListener('change', carregarGaleria);
+document.getElementById('botaoLimparFiltros').addEventListener('click', limparFiltros);
 
 function mostrarGaleria(filmes) {
   const container = document.getElementById('galeria');
@@ -123,11 +142,116 @@ function mostrarGaleria(filmes) {
         <div class="meta">${filme.ano || '—'} · ★ ${filme.nota || '—'}</div>
       </div>
     `;
+    card.addEventListener('click', () => abrirModal(filme.id));
     container.appendChild(card);
   });
 }
 
-// --- Carregar a galeria assim que a página abre ---
+// --- Sidebar de favoritos ---
 
+async function carregarFavoritos() {
+  try {
+    const resposta = await fetch(`${API_URL}/filmes/?apenas_favoritos=true&ordenar=adicionado_em`);
+    const dados = await resposta.json();
+    mostrarFavoritos(dados.filmes);
+  } catch (erro) {
+    console.error('Erro ao carregar favoritos:', erro);
+  }
+}
+
+function mostrarFavoritos(filmes) {
+  const container = document.getElementById('listaFavoritos');
+  container.innerHTML = '';
+
+  filmes.forEach(filme => {
+    const item = document.createElement('div');
+    item.className = 'favorito-item';
+    item.innerHTML = `
+      <div class="nome-horizontal">${filme.titulo}</div>
+      <div class="preview">
+        <img src="${filme.cartaz_url || ''}" alt="${filme.titulo}">
+      </div>
+    `;
+    item.addEventListener('click', () => abrirModal(filme.id));
+    container.appendChild(item);
+  });
+}
+
+// --- Modal de detalhes do filme ---
+
+let filmeAtualId = null;
+
+async function abrirModal(filmeId) {
+  try {
+    const resposta = await fetch(`${API_URL}/filmes/${filmeId}`);
+    if (!resposta.ok) throw new Error('Filme não encontrado');
+    const filme = await resposta.json();
+    filmeAtualId = filme.id;
+
+    document.getElementById('modalConteudo').innerHTML = `
+      <div class="modal-hero">
+        <img src="${filme.cartaz_url || ''}" alt="${filme.titulo}">
+        <div class="modal-info">
+          <h2>${filme.titulo}</h2>
+          <div class="modal-meta">
+            ${filme.ano || '—'} · ${filme.duracao_min ? filme.duracao_min + ' min' : '—'} ·  ${filme.nota || '—'}
+            ${filme.genero_nome ? ' · ' + filme.genero_nome : ''}
+          </div>
+        </div>
+      </div>
+      <p class="modal-sinopse">${filme.sinopse || 'Sem sinopse disponível.'}</p>
+      <div class="modal-acoes">
+        <button id="botaoFavoritoModal" class="${filme.favorito ? 'activo' : ''}">
+          ${filme.favorito ? ' Remover dos favoritos' : '☆ Marcar como favorito'}
+        </button>
+        <button id="botaoApagarModal"> Remover filme</button>
+      </div>
+    `;
+
+    document.getElementById('botaoFavoritoModal').addEventListener('click', () => alternarFavoritoModal(filme.id));
+    document.getElementById('botaoApagarModal').addEventListener('click', () => apagarFilmeModal(filme.id));
+
+    document.getElementById('modalOverlay').classList.add('aberto');
+  } catch (erro) {
+    console.error('Erro ao abrir modal:', erro);
+    alert('Não foi possível carregar os detalhes do filme.');
+  }
+}
+
+function fecharModal() {
+  document.getElementById('modalOverlay').classList.remove('aberto');
+  filmeAtualId = null;
+}
+
+async function alternarFavoritoModal(filmeId) {
+  try {
+    await fetch(`${API_URL}/filmes/${filmeId}/favorito`, { method: 'PATCH' });
+    fecharModal();
+    carregarGaleria();
+    carregarFavoritos();
+  } catch (erro) {
+    console.error('Erro ao alternar favorito:', erro);
+  }
+}
+
+async function apagarFilmeModal(filmeId) {
+  if (!confirm('Tens a certeza que queres remover este filme?')) return;
+  try {
+    await fetch(`${API_URL}/filmes/${filmeId}`, { method: 'DELETE' });
+    fecharModal();
+    carregarGaleria();
+    carregarFavoritos();
+  } catch (erro) {
+    console.error('Erro ao apagar filme:', erro);
+  }
+}
+
+document.getElementById('botaoFecharModal').addEventListener('click', fecharModal);
+document.getElementById('modalOverlay').addEventListener('click', (evento) => {
+  if (evento.target.id === 'modalOverlay') fecharModal();
+});
+
+// --- Carregar a galeria e os favoritos assim que a página abre ---
 
 carregarGaleria();
+carregarFavoritos();

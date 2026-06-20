@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, Text
+from sqlalchemy import Column, Integer, String, Float, DateTime, Text, Boolean
 from sqlalchemy.sql import func
 from app.database import Base
 
@@ -19,4 +19,5 @@ class Filme(Base):
     cartaz_url = Column(String(500), nullable=True)
     sinopse = Column(Text, nullable=True)
     duracao_min = Column(Integer, nullable=True)
+    favorito = Column(Boolean, default=False, nullable=False)
     adicionado_em = Column(DateTime(timezone=True), server_default=func.now())

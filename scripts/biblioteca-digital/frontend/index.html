@@ -8,33 +8,59 @@
 </head>
 <body>
 
-  <header>
-    <h1>Biblioteca Digital</h1>
-  </header>
+  <aside id="sidebarFavoritos">
+    <h3>Favoritos</h3>
+    <div id="listaFavoritos"></div>
+  </aside>
 
-  <section id="adicionar">
-    <h2>Adicionar Filme</h2>
-    <input type="text" id="campoPesquisa" placeholder="Pesquisa de filmes ...">
-    <button id="botaoPesquisar">Pesquisar</button>
-    <div id="resultadosPesquisa"></div>
-  </section>
+  <main>
+    <header>
+      <h1>Biblioteca Digital</h1>
+    </header>
 
-  <section id="filtros">
-    <input type="text" id="filtroTexto" placeholder="Filtrar filmes...">
-    <select id="filtroGenero">
-      <option value="">Géneros</option>
-      <option value="action">Ação</option>
-      <option value="drama">Drama</option>
-      <option value="comedy">Comédia</option>
-      <option value="thriller">Thriller</option>
-      <option value="scifi">Sci-Fi</option>
-      <option value="horror">Terror</option>
-    </select>
-  </section>
+    <section id="adicionar">
+      <h2>Adicionar Filme</h2>
+      <input type="text" id="campoPesquisa" placeholder="Pesquisar filme no TMDB...">
+      <button id="botaoPesquisar">Pesquisar</button>
+      <div id="resultadosPesquisa"></div>
+    </section>
 
-  <section id="galeria">
-    <!-- os filmes vão aparecer aqui, gerados por JavaScript -->
-  </section>
+    <section id="filtros">
+      <input type="text" id="filtroTexto" placeholder="Filtrar biblioteca...">
+
+      <select id="filtroGenero">
+        <option value="">Todos os géneros</option>
+        <option value="action">Ação</option>
+        <option value="drama">Drama</option>
+        <option value="comedy">Comédia</option>
+        <option value="thriller">Thriller</option>
+        <option value="scifi">Sci-Fi</option>
+        <option value="horror">Terror</option>
+        <option value="other">Outro</option>
+      </select>
+
+      <input type="number" id="filtroAnoMin" placeholder="Ano mínimo" style="width: 110px;">
+      <input type="number" id="filtroAnoMax" placeholder="Ano máximo" style="width: 110px;">
+
+      <label style="margin-left: 8px;">
+        <input type="checkbox" id="filtroFavoritos">
+        Favoritos
+      </label>
+
+      <button id="botaoLimparFiltros">Limpar filtros</button>
+    </section>
+
+    <section id="galeria">
+      <!-- os filmes vão aparecer aqui, gerados por JavaScript -->
+    </section>
+  </main>
+
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+      <button id="botaoFecharModal" class="modal-fechar">✕</button>
+      <div id="modalConteudo"></div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

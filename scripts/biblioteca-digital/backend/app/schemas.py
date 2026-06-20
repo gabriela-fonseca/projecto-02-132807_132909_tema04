@@ -16,7 +16,8 @@ class FilmeBase(BaseModel):
     sinopse: Optional[str] = None
     duracao_min: Optional[int] = None
     tmdb_id: Optional[int] = None
-
+    favorito: Optional[bool] = False
+    
 
 class FilmeCriar(FilmeBase):
     # usado quando o utilizador envia dados para criar um filme
