@@ -1,4 +1,4 @@
-# [Gestor de Biblioteca de Media com Metadados Automatizados]
+<img width="2625" height="1701" alt="imagem" src="https://github.com/user-attachments/assets/eba3c565-d659-4da6-98dd-8b7bddd33f26" /># [Gestor de Biblioteca de Media com Metadados Automatizados]
 
 Com tanta informação digital, seja de assuntos sérios, como trabalhos científicos, reportagens... ou de assuntos menos importantes como livros, filmes (ou suas características), informações de jogos... os utilizadores necessitam cada vez mais de organizar todos estes conteúdos digitais. Apesar disso, não é fácil reunir toda a informação dispersa pela internet, quanto mais organizá-la. Mesmo assim, continua a ser importante a criação de um sistema centralizado para gestão de bibliotecas pessoais. 
 Neste contexto, este projeto aborda o desenvolvimento de uma aplicação de gestão de biblioteca de media (filmes e/ou livros). Nesta é possivel adicionar títulos pelo utilizador com enriquecimento automático de dados.
@@ -111,14 +111,60 @@ db-1       |  database system is ready to accept connections
 backend-1  |  INFO: Application startup complete.
 ```
 3. Se não houver nenhum erro, isto executa o ficheiro Docker e faz com que ele se ligue à base de dados (database.py e main.py).
-4. Para verificar que o programa está a responder, abrir no browser o seguinte link: http://127.0.0.1:8000/docs
-5. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
-6. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
-7. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
-8. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
-9. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
-10. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
-11. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
+4. Para verificar que o programa está a responder, abrir no browser o seguinte link: http://127.0.0.1:8000/docs e deve aparecer algo como:
+
+<p align="center">
+  <img src="assets/biblioteca_docs.png" alt="link: http://127.0.0.1:8000/docs, no browser"/>
+</p>
+
+(acrescentamos aqui também a visualização do link: http://127.0.0.1:8000/filmes/)
+<p align="center">
+  <img src="assets/filmes.png" alt="link: http://127.0.0.1:8000/filmes/, no browser"/>
+</p>
+
+6. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
+
+<p align="center">
+  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" />
+</p>
+
+8. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
+  
+<p align="center">
+  <img src="assets/adicao_pesquisa_filme_saite.png" alt="Pesquisa de um filme" />
+</p>
+
+10. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
+
+<p align="center">
+  <img src="assets/adicao_filme_saite.png" alt="Adicao do filme escolhido com sucesso" />
+</p>
+
+11. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
+
+<p align="center">
+  <img src="assets/tentativa_adicao_filme_repetido.png" alt="Adicao do filme escolhido sem sucesso, devido a já estar incluido" />
+</p>
+
+12. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
+
+<p align="center">
+  <img src="assets/filtro_nome_saite.png" alt="Pesquisa/filtragem de um filme pelo seu nome" />
+</p>
+
+13. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
+
+<p align="center">
+  <img src="assets/filtro_acao_saite.png" alt="Pesquisa/filtragem de um filme pelo seu gênero" />
+</p>
+<p align="center">
+  <img src="assets/filtro_ano_saite.png" alt="Pesquisa/filtragem de um filme pelo seu ano minimo ou máximo" />
+</p>
+<p align="center">
+  <img src="assets/filtro_favoritos_saite.png" alt="Pesquisa/filtragem de um filme pela caracterização de ser um favorito do utilizador" />
+</p>
+
+14. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
 
 Nota: O comando ```docker compose up --build``` só é necessário na primeira vez. Nas próximas vezes que se utilizar a biblioteca, basta escrever ```docker compose up```, sem a parte "--build".
 
@@ -126,7 +172,22 @@ Nota: O comando ```docker compose up --build``` só é necessário na primeira v
 A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no browser.
 
 <p align="center">
-  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" width="300"/>
+  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" />
+</p>
+
+## Algumas funcionalidades extra 
+
+Lista de filmes favoritos
+<p align="center">
+  <img src="assets/favoritos_saite.png" alt="Lista de filmes favoritos" />
+</p>
+Janela de informações sobre o filme
+<p align="center">
+  <img src="assets/informacao_filme_saite.png" alt="Janela de informações sobre o filme" />
+</p>
+Lista de filmes para Ver Mais Tarde/Lista de Desejos
+<p align="center">
+  <img src="assets/vermaistarde_saite.png" alt="Lista de filmes para Ver Mais Tarde/Lista de Desejos" />
 </p>
 
 ## Autores
