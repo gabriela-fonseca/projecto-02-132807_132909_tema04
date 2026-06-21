@@ -101,7 +101,22 @@ detiaveiro/
 * HTML, CSS e JavaScript puro (para dar forma e estilo ao frontend do site);
 
 ### Configuração e utilização
-(falta só isto)
+
+A lista seguinte mostra cada passo da criação do programa, desde os passos iniciais antes de escrever qualquer código, ao backend, até ao frontend.
+
+1. Começamos por criar uma conta na TMDB, pois é necessário pedir uma chave para termos acesso à sua API externa, que precisamos para desenvolver o programa.
+2. Com a API obtida, podemos escrever o código, começando pelo backend. Mais concretamente, o primeiro ficheiro a desenvolver é o docker. É este ficheiro que assegura a ligação entre o gestor de biblioteca e a API externa que contém os metadados dos filmes.
+3. Também é necessário o ficheiro requirements.txt, que contém todos os packages que o python vai precisar neste projeto, para que o programa consiga correr.
+4. De seguida, escrevemos os ficheiros python. Primeiro, utilizando a package FastAPI, o ficheiro main.py é o ponto de entrada da API externa. Como diz o nome, é o ficheiro principal do programa, que contém código fundamental para que a biblioteca funcione corretamente ao arrancar.
+5. O ficheiro database.py faz a ligação à base de dados, utilizando packages relacionados a SQL.
+6. O passo anterior só é possível com o ficheiro tmdb_client.py, que é o cliente da API externa TMDB e permite obter os metadados que esta contém.
+7. Também com SQL, o ficheiro models.py cria tabelas com cada metadado dos filmes da biblioteca.
+8. O ficheiro schemas.py utiliza Pydantic para validar os dados dos filmes.
+9. Por último, o ficheiro crud.py é quase tão importante como o main.py. É ele que executa todas as operações dentro da biblioteca, sejam elas adicionar/remover um filme, pesquisar por um filme na base de dados, filtrar os filmes presentes na biblioteca, adicionar/remover um filme da lista de favoritos ou ver mais tarde.
+10. Com o backend concluído, podemos começar a desenvolver o frontend, para dar uma cara apresentável a todo este código.
+11. Primeiro, escremos o código HTML, presente no ficheiro index.html. É este ficheiro que ajuda a formatar e organizar a apresentação da página web, assim como é responsável por certos elementos como tabelas, botões, menus dropdown ou divisões na página.
+12. Mais ou menos de forma simultânea, também desenvolvemos o JavaScript no ficheiro app.js. Este assegura a funcionalidade dos elementos da página, como os botões e os menus dropdown, por exemplo, mas também as funções programadas pelo backend.
+13. Por fim, o ficheiro style.css trata da parte visual da página, sendo nele que escolhemos as cores utilizadas, as fontes e os tamanhos de letra do texto, o tamanho dos elementos como botões, tabelas e divisões, entre outros.
 
 ### Funcionamento
 
@@ -125,37 +140,37 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/filmes.png" alt="link: http://127.0.0.1:8000/filmes/, no browser"/>
 </p>
 
-6. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
+5. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
 
 <p align="center">
   <img src="assets/site_inicial.png" alt="Gestor de Biblioteca de Filmes"/>
 </p>
 
-8. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
+6. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
   
 <p align="center">
   <img src="assets/adicao_pesquisa_filme_site.png" alt="Pesquisa de um filme" />
 </p>
 
-10. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
+7. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
 
 <p align="center">
   <img src="assets/adicao_filme_site.png" alt="Adicao do filme escolhido com sucesso" />
 </p>
 
-11. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
+8. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
 
 <p align="center">
   <img src="assets/tentativa_adicao_filme_repetido.png" alt="Adicao do filme escolhido sem sucesso, devido a já estar incluido" />
 </p>
 
-12. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
+9. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
 
 <p align="center">
   <img src="assets/filtro_nome_site.png" alt="Pesquisa/filtragem de um filme pelo seu nome" />
 </p>
 
-13. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
+10. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
 
 <p align="center">
   <img src="assets/filtro_acao_site.png" alt="Pesquisa/filtragem de um filme pelo seu gênero" />
@@ -167,7 +182,7 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/filtro_favoritos_site.png" alt="Pesquisa/filtragem de um filme pela caracterização de ser um favorito do utilizador" />
 </p>
 
-14. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
+11. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
 
 Nota: O comando ```docker compose up --build``` só é necessário na primeira vez. Nas próximas vezes que se utilizar a biblioteca, basta escrever ```docker compose up```, sem a parte "--build".
 
