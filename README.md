@@ -125,7 +125,7 @@ backend-1  |  INFO: Application startup complete.
 6. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
 
 <p align="center">
-  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" />
+  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes" width="700"/>
 </p>
 
 8. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
