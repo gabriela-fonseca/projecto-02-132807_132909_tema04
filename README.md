@@ -100,6 +100,9 @@ detiaveiro/
 * Conta TMDB (em [themoviedb.org](https://www.themoviedb.org), com chave de API v3);
 * HTML, CSS e JavaScript puro (para dar forma e stilo ao frontend do saite);
 
+### Configuração e utilização
+(falta só isto)
+
 ### Funcionamento
 
 A lista a seguir explica como utilizar a biblioteca digital e cada passo que o programa gestor da biblioteca faz durante a sua execução.
