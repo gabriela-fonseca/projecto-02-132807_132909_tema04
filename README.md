@@ -177,19 +177,19 @@ A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no b
 
 ## Algumas funcionalidades extra 
 
-<table>
+<table align="center">
   <tr>
     <td align="center">
-      <img src="assets/favoritos_saite.png" alt="Lista de filmes favoritos" width="300"><br>
-      <b>Lista de filmes favoritos</b>
+      <strong>Lista de filmes favoritos</strong><br><br>
+      <img src="assets/favoritos_saite.png" alt="Lista de filmes favoritos" width="300"/>
     </td>
     <td align="center">
-      <img src="assets/informacao_filme_saite.png" alt="Janela de informações sobre o filme" width="300"><br>
-      <b>Janela de informações sobre o filme</b>
+      <strong>Janela de informações sobre o filme</strong><br><br>
+      <img src="assets/informacao_filme_saite.png" alt="Janela de informações sobre o filme" width="300"/>
     </td>
     <td align="center">
-      <img src="assets/vermaistarde_saite.png" alt="Lista de filmes para Ver Mais Tarde/Lista de Desejos" width="300"><br>
-      <b>Lista de filmes para Ver Mais Tarde/Lista de Desejos</b>
+      <strong>Lista de filmes para Ver Mais Tarde/Lista de Desejos</strong><br><br>
+      <img src="assets/vermaistarde_saite.png" alt="Lista de filmes para Ver Mais Tarde/Lista de Desejos" width="300"/>
     </td>
   </tr>
 </table>
