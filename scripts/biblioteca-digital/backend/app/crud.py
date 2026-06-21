@@ -21,6 +21,7 @@ def obter_filmes(
     ano_min: Optional[int] = None,
     ano_max: Optional[int] = None,
     apenas_favoritos: Optional[bool] = None,
+    apenas_quero_ver: Optional[bool] = None,
     ordenar: Optional[str] = "adicionado_em",
     pagina: int = 1,
     por_pagina: int = 20,
@@ -50,6 +51,9 @@ def obter_filmes(
     if apenas_favoritos:
         query = query.filter(Filme.favorito == True)
 
+    if apenas_quero_ver:
+        query = query.filter(Filme.quero_ver == True)
+
     total = query.count()
 
     colunas_ordem = {
@@ -65,7 +69,7 @@ def obter_filmes(
     filmes = query.offset(offset).limit(por_pagina).all()
 
     return filmes, total
-
+    
 def obter_filme_por_id(db: Session, filme_id: int) -> Optional[Filme]:
     return db.query(Filme).filter(Filme.id == filme_id).first()
 
@@ -87,6 +91,15 @@ def alternar_favorito(db: Session, filme_id: int) -> Optional[Filme]:
     if not filme:
         return None
     filme.favorito = not filme.favorito
+    db.commit()
+    db.refresh(filme)
+    return filme
+    
+def alternar_quero_ver(db: Session, filme_id: int) -> Optional[Filme]:
+    filme = obter_filme_por_id(db, filme_id)
+    if not filme:
+        return None
+    filme.quero_ver = not filme.quero_ver
     db.commit()
     db.refresh(filme)
     return filme

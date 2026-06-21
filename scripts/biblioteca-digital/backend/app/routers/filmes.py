@@ -16,6 +16,7 @@ def listar_filmes(
     ano_min: Optional[int] = Query(None),
     ano_max: Optional[int] = Query(None),
     apenas_favoritos: Optional[bool] = Query(None),
+    apenas_quero_ver: Optional[bool] = Query(None),
     ordenar: Optional[str] = Query("adicionado_em"),
     pagina: int = Query(1, ge=1),
     por_pagina: int = Query(20, ge=1, le=100),
@@ -23,7 +24,7 @@ def listar_filmes(
 ):
     filmes, total = crud.obter_filmes(
         db, pesquisa, genero, nota_minima, ano_min, ano_max,
-        apenas_favoritos, ordenar, pagina, por_pagina
+        apenas_favoritos, apenas_quero_ver, ordenar, pagina, por_pagina
     )
     return {
         "total": total,
@@ -55,6 +56,13 @@ def apagar_filme(filme_id: int, db: Session = Depends(get_db)):
 @router.patch("/{filme_id}/favorito", response_model=FilmeResposta)
 def alternar_favorito(filme_id: int, db: Session = Depends(get_db)):
     filme = crud.alternar_favorito(db, filme_id)
+    if not filme:
+        raise HTTPException(status_code=404, detail="Filme não encontrado")
+    return filme
+    
+@router.patch("/{filme_id}/quero-ver", response_model=FilmeResposta)
+def alternar_quero_ver(filme_id: int, db: Session = Depends(get_db)):
+    filme = crud.alternar_quero_ver(db, filme_id)
     if not filme:
         raise HTTPException(status_code=404, detail="Filme não encontrado")
     return filme

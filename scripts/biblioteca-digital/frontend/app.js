@@ -177,6 +177,34 @@ function mostrarFavoritos(filmes) {
   });
 }
 
+async function carregarListaDesejos() {
+  try {
+    const resposta = await fetch(`${API_URL}/filmes/?apenas_quero_ver=true&ordenar=adicionado_em`);
+    const dados = await resposta.json();
+    mostrarListaDesejos(dados.filmes);
+  } catch (erro) {
+    console.error('Erro ao carregar lista de desejos:', erro);
+  }
+}
+
+function mostrarListaDesejos(filmes) {
+  const container = document.getElementById('listaQueroVer');
+  container.innerHTML = '';
+
+  filmes.forEach(filme => {
+    const item = document.createElement('div');
+    item.className = 'favorito-item';
+    item.innerHTML = `
+      <div class="nome-horizontal">${filme.titulo}</div>
+      <div class="preview">
+        <img src="${filme.cartaz_url || ''}" alt="${filme.titulo}">
+      </div>
+    `;
+    item.addEventListener('click', () => abrirModal(filme.id));
+    container.appendChild(item);
+  });
+}
+
 // --- Modal de detalhes do filme ---
 
 let filmeAtualId = null;
@@ -200,16 +228,22 @@ async function abrirModal(filmeId) {
         </div>
       </div>
       <p class="modal-sinopse">${filme.sinopse || 'Sem sinopse disponível.'}</p>
-      <div class="modal-acoes">
-        <button id="botaoFavoritoModal" class="${filme.favorito ? 'activo' : ''}">
-          ${filme.favorito ? ' Remover dos favoritos' : '☆ Marcar como favorito'}
-        </button>
-        <button id="botaoApagarModal"> Remover filme</button>
-      </div>
+        <div class="modal-acoes">
+          <button id="botaoFavoritoModal" class="${filme.favorito ? 'activo' : ''}">
+            ${filme.favorito ? '★ Remover dos favoritos' : '☆ Marcar como favorito'}
+          </button>
+
+          <button id="botaoQueroVerModal" class="${filme.quero_ver ? 'activo' : ''}">
+            ${filme.quero_ver ? '✓ Remover da lista ver mais tarde' : '👁 Ver mais tarde'}
+          </button>
+
+          <button id="botaoApagarModal">🗑 Remover filme</button>
+        </div>
     `;
 
     document.getElementById('botaoFavoritoModal').addEventListener('click', () => alternarFavoritoModal(filme.id));
     document.getElementById('botaoApagarModal').addEventListener('click', () => apagarFilmeModal(filme.id));
+    document.getElementById('botaoQueroVerModal').addEventListener('click', () => alternarQueroVerModal(filme.id));
 
     document.getElementById('modalOverlay').classList.add('aberto');
   } catch (erro) {
@@ -229,6 +263,7 @@ async function alternarFavoritoModal(filmeId) {
     fecharModal();
     carregarGaleria();
     carregarFavoritos();
+    carregarListaDesejos();
   } catch (erro) {
     console.error('Erro ao alternar favorito:', erro);
   }
@@ -241,8 +276,21 @@ async function apagarFilmeModal(filmeId) {
     fecharModal();
     carregarGaleria();
     carregarFavoritos();
+    carregarListaDesejos();
   } catch (erro) {
     console.error('Erro ao apagar filme:', erro);
+  }
+}
+
+async function alternarQueroVerModal(filmeId) {
+  try {
+    await fetch(`${API_URL}/filmes/${filmeId}/quero-ver`, { method: 'PATCH' });
+    fecharModal();
+    carregarGaleria();
+    carregarFavoritos();
+    carregarListaDesejos();
+  } catch (erro) {
+    console.error('Erro ao alternar quero ver:', erro);
   }
 }
 
@@ -255,3 +303,4 @@ document.getElementById('modalOverlay').addEventListener('click', (evento) => {
 
 carregarGaleria();
 carregarFavoritos();
+carregarListaDesejos();

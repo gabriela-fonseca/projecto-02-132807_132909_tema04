@@ -20,4 +20,5 @@ class Filme(Base):
     sinopse = Column(Text, nullable=True)
     duracao_min = Column(Integer, nullable=True)
     favorito = Column(Boolean, default=False, nullable=False)
+    quero_ver = Column(Boolean, default=False, nullable=False)
     adicionado_em = Column(DateTime(timezone=True), server_default=func.now())

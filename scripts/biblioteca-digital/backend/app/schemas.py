@@ -17,6 +17,7 @@ class FilmeBase(BaseModel):
     duracao_min: Optional[int] = None
     tmdb_id: Optional[int] = None
     favorito: Optional[bool] = False
+    quero_ver: Optional[bool] = False
     
 
 class FilmeCriar(FilmeBase):
