@@ -41,7 +41,20 @@ detiaveiro/
     |    └── settings.json
     │
     ├── assets/
-    |    └── Projeto2.drawio.png
+    │    ├── adicao_filme_saite.png
+    │    ├── adicao_pesquisa_filme_saite.png
+    │    ├── biblioteca_docs.png
+    │    ├── favoritos_saite.png
+    │    ├── filmes.png
+    │    ├── filtro_acao_saite.png
+    │    ├── filtro_ano_saite.png
+    │    ├── filtro_favoritos_saite.png
+    │    ├── filtro_nome_saite.png
+    │    ├── informacao_filme_saite.png
+    │    ├── Projeto2.drawio.png
+    │    ├── saite_inicial.png
+    │    ├── sem_filtros_saite.png
+    |    └── vermaistarde_saite.png
     │  
     ├── scripts/
     │   └── biblioteca-digital/
