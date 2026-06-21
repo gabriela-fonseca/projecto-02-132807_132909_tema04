@@ -1,4 +1,4 @@
-<img width="2625" height="1701" alt="imagem" src="https://github.com/user-attachments/assets/eba3c565-d659-4da6-98dd-8b7bddd33f26" /># [Gestor de Biblioteca de Media com Metadados Automatizados]
+# [Gestor de Biblioteca de Media com Metadados Automatizados]
 
 Com tanta informação digital, seja de assuntos sérios, como trabalhos científicos, reportagens... ou de assuntos menos importantes como livros, filmes (ou suas características), informações de jogos... os utilizadores necessitam cada vez mais de organizar todos estes conteúdos digitais. Apesar disso, não é fácil reunir toda a informação dispersa pela internet, quanto mais organizá-la. Mesmo assim, continua a ser importante a criação de um sistema centralizado para gestão de bibliotecas pessoais. 
 Neste contexto, este projeto aborda o desenvolvimento de uma aplicação de gestão de biblioteca de media (filmes e/ou livros). Nesta é possivel adicionar títulos pelo utilizador com enriquecimento automático de dados.
