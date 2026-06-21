@@ -41,20 +41,20 @@ detiaveiro/
     |    └── settings.json
     │
     ├── assets/
-    │    ├── adicao_filme_saite.png
-    │    ├── adicao_pesquisa_filme_saite.png
+    │    ├── adicao_filme_site.png
+    │    ├── adicao_pesquisa_filme_site.png
     │    ├── biblioteca_docs.png
-    │    ├── favoritos_saite.png
+    │    ├── favoritos_site.png
     │    ├── filmes.png
-    │    ├── filtro_acao_saite.png
-    │    ├── filtro_ano_saite.png
-    │    ├── filtro_favoritos_saite.png
-    │    ├── filtro_nome_saite.png
-    │    ├── informacao_filme_saite.png
+    │    ├── filtro_acao_site.png
+    │    ├── filtro_ano_site.png
+    │    ├── filtro_favoritos_site.png
+    │    ├── filtro_nome_site.png
+    │    ├── informacao_filme_site.png
     │    ├── Projeto2.drawio.png
-    │    ├── saite_inicial.png
-    │    ├── sem_filtros_saite.png
-    |    └── vermaistarde_saite.png
+    │    ├── site_inicial.png
+    │    ├── sem_filtros_site.png
+    |    └── vermaistarde_site.png
     │  
     ├── scripts/
     │   └── biblioteca-digital/
@@ -98,7 +98,7 @@ detiaveiro/
 * Python 3.9+ (para correr o backend fora do Docker, se necessário);
 * Docker e Docker Compose (para correr PostgreSQL e o backend containerizados);
 * Conta TMDB (em [themoviedb.org](https://www.themoviedb.org), com chave de API v3);
-* HTML, CSS e JavaScript puro (para dar forma e stilo ao frontend do saite);
+* HTML, CSS e JavaScript puro (para dar forma e estilo ao frontend do site);
 
 ### Configuração e utilização
 (falta só isto)
@@ -128,19 +128,19 @@ backend-1  |  INFO: Application startup complete.
 6. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
 
 <p align="center">
-  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes"/>
+  <img src="assets/site_inicial.png" alt="Gestor de Biblioteca de Filmes"/>
 </p>
 
 8. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
   
 <p align="center">
-  <img src="assets/adicao_pesquisa_filme_saite.png" alt="Pesquisa de um filme" />
+  <img src="assets/adicao_pesquisa_filme_site.png" alt="Pesquisa de um filme" />
 </p>
 
 10. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
 
 <p align="center">
-  <img src="assets/adicao_filme_saite.png" alt="Adicao do filme escolhido com sucesso" />
+  <img src="assets/adicao_filme_site.png" alt="Adicao do filme escolhido com sucesso" />
 </p>
 
 11. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
@@ -152,19 +152,19 @@ backend-1  |  INFO: Application startup complete.
 12. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
 
 <p align="center">
-  <img src="assets/filtro_nome_saite.png" alt="Pesquisa/filtragem de um filme pelo seu nome" />
+  <img src="assets/filtro_nome_site.png" alt="Pesquisa/filtragem de um filme pelo seu nome" />
 </p>
 
 13. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
 
 <p align="center">
-  <img src="assets/filtro_acao_saite.png" alt="Pesquisa/filtragem de um filme pelo seu gênero" />
+  <img src="assets/filtro_acao_site.png" alt="Pesquisa/filtragem de um filme pelo seu gênero" />
 </p>
 <p align="center">
-  <img src="assets/filtro_ano_saite.png" alt="Pesquisa/filtragem de um filme pelo seu ano minimo ou máximo" />
+  <img src="assets/filtro_ano_site.png" alt="Pesquisa/filtragem de um filme pelo seu ano minimo ou máximo" />
 </p>
 <p align="center">
-  <img src="assets/filtro_favoritos_saite.png" alt="Pesquisa/filtragem de um filme pela caracterização de ser um favorito do utilizador" />
+  <img src="assets/filtro_favoritos_site.png" alt="Pesquisa/filtragem de um filme pela caracterização de ser um favorito do utilizador" />
 </p>
 
 14. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
@@ -175,7 +175,7 @@ Nota: O comando ```docker compose up --build``` só é necessário na primeira v
 A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no browser.
 
 <p align="center">
-  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" />
+  <img src="assets/site_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" />
 </p>
 
 ## Algumas funcionalidades extra 
@@ -183,15 +183,15 @@ A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no b
 <table align="center">
   <tr>
     <td align="center">
-      <img src="assets/favoritos_saite.png" height="180"><br>
+      <img src="assets/favoritos_site.png" height="180"><br>
       <sub><b>Lista de filmes favoritos</b></sub>
     </td>
     <td align="center">
-      <img src="assets/informacao_filme_saite.png" height="180"><br>
+      <img src="assets/informacao_filme_site.png" height="180"><br>
       <sub><b>Informações do filme</b></sub>
     </td>
     <td align="center">
-      <img src="assets/vermaistarde_saite.png" height="180"><br>
+      <img src="assets/vermaistarde_site.png" height="180"><br>
       <sub><b>Ver Mais Tarde / Desejos</b></sub>
     </td>
   </tr>
