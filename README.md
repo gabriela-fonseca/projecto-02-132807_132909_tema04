@@ -125,7 +125,9 @@ Nota: O comando ```docker compose up --build``` só é necessário na primeira v
 ## Aparência da biblioteca digital
 A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no browser.
 
-(adicionar uma print do site quando estiver pronto)
+<p align="center">
+  <img src="assets/Projeto2.drawio.png" alt="Arquitetura do projeto (esquema)" width="300"/>
+</p>
 
 ## Autores
 
