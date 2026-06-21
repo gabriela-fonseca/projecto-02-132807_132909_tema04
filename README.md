@@ -126,7 +126,7 @@ Nota: O comando ```docker compose up --build``` só é necessário na primeira v
 A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no browser.
 
 <p align="center">
-  <img src="assets/Projeto2.drawio.png" alt="Arquitetura do projeto (esquema)" width="300"/>
+  <img src="assets/saite_inicial.png" alt="Gestor de Biblioteca de Filmes (aparência da página)" width="300"/>
 </p>
 
 ## Autores
