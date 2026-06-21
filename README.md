@@ -95,10 +95,10 @@ detiaveiro/
 ## Execução
 
 ### Pré-requisitos
-* Integração de APIs Externas;
-* SQL;
-* Metadados Multimédia;
-* Docker.
+* Python 3.9+ (para correr o backend fora do Docker, se necessário);
+* Docker e Docker Compose (para correr PostgreSQL e o backend containerizados);
+* Conta TMDB (em [themoviedb.org](https://www.themoviedb.org), com chave de API v3);
+* HTML, CSS e JavaScript puro (para dar forma e stilo ao frontend do saite);
 
 ### Funcionamento
 
