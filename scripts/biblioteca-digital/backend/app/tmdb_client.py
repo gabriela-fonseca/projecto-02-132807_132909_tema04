@@ -40,6 +40,40 @@ async def pesquisar_filmes(titulo: str) -> list[dict]:
         ]
 
 
+async def obter_trailer(tmdb_id: int) -> Optional[str]:
+    if not TMDB_KEY:
+        return None
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(
+            f"{TMDB_BASE}/movie/{tmdb_id}/videos",
+            params={"api_key": TMDB_KEY, "language": LANG},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        videos = resp.json().get("results", [])
+
+        trailer = next(
+            (v for v in videos if v["site"] == "YouTube" and v["type"] == "Trailer"),
+            None,
+        )
+
+        if not trailer:
+            resp_en = await client.get(
+                f"{TMDB_BASE}/movie/{tmdb_id}/videos",
+                params={"api_key": TMDB_KEY},
+                timeout=10,
+            )
+            videos_en = resp_en.json().get("results", [])
+            trailer = next(
+                (v for v in videos_en if v["site"] == "YouTube" and v["type"] == "Trailer"),
+                None,
+            )
+
+        if trailer:
+            return f"https://www.youtube.com/embed/{trailer['key']}"
+        return None
+
+
 async def obter_detalhes_filme(tmdb_id: int) -> Optional[dict]:
     if not TMDB_KEY:
         return None
@@ -55,6 +89,8 @@ async def obter_detalhes_filme(tmdb_id: int) -> Optional[dict]:
         genero_id = m["genres"][0]["id"] if m.get("genres") else None
         genero_nome = m["genres"][0]["name"] if m.get("genres") else None
 
+        trailer_url = await obter_trailer(tmdb_id)
+
         return {
             "tmdb_id": m["id"],
             "titulo": m["title"],
@@ -68,4 +104,5 @@ async def obter_detalhes_filme(tmdb_id: int) -> Optional[dict]:
             "cartaz_url": f"{TMDB_IMG}{m['poster_path']}" if m.get("poster_path") else None,
             "sinopse": m.get("overview"),
             "duracao_min": m.get("runtime"),
+            "trailer_url": trailer_url,
         }

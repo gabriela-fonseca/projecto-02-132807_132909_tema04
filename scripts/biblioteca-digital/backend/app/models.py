@@ -21,4 +21,5 @@ class Filme(Base):
     duracao_min = Column(Integer, nullable=True)
     favorito = Column(Boolean, default=False, nullable=False)
     quero_ver = Column(Boolean, default=False, nullable=False)
+    trailer_url = Column(String(500), nullable=True)
     adicionado_em = Column(DateTime(timezone=True), server_default=func.now())

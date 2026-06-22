@@ -18,6 +18,7 @@ class FilmeBase(BaseModel):
     tmdb_id: Optional[int] = None
     favorito: Optional[bool] = False
     quero_ver: Optional[bool] = False
+    trailer_url: Optional[str] = None
     
 
 class FilmeCriar(FilmeBase):
