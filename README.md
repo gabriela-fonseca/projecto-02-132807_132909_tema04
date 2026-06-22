@@ -92,6 +92,8 @@ detiaveiro/
     ├── README.md
     └── LICENSE
 ```
+(Devido ao nosso repositório ser grande, ocultámos alguns ficheiros de pastas geradas automáticamente ao decorrer do trabalho)
+
 ## Execução
 
 ### Pré-requisitos
