@@ -216,30 +216,44 @@ async function abrirModal(filmeId) {
     const filme = await resposta.json();
     filmeAtualId = filme.id;
 
+    // Injeta os dados de texto estruturados
     document.getElementById('modalConteudo').innerHTML = `
       <div class="modal-hero">
         <img src="${filme.cartaz_url || ''}" alt="${filme.titulo}">
         <div class="modal-info">
           <h2>${filme.titulo}</h2>
           <div class="modal-meta">
-            ${filme.ano || '—'} · ${filme.duracao_min ? filme.duracao_min + ' min' : '—'} ·  ${filme.nota || '—'}
+            ${filme.ano || '—'} · ${filme.duracao_min ? filme.duracao_min + ' min' : '—'} ·  ★ ${filme.nota || '—'}
             ${filme.genero_nome ? ' · ' + filme.genero_nome : ''}
           </div>
         </div>
       </div>
       <p class="modal-sinopse">${filme.sinopse || 'Sem sinopse disponível.'}</p>
-        <div class="modal-acoes">
-          <button id="botaoFavoritoModal" class="${filme.favorito ? 'activo' : ''}">
-            ${filme.favorito ? '★ Remover dos favoritos' : '☆ Marcar como favorito'}
-          </button>
+      
+      <div class="modal-acoes">
+        <button id="botaoFavoritoModal" class="${filme.favorito ? 'activo' : ''}">
+          ${filme.favorito ? '★ Remover dos favoritos' : '☆ Marcar como favorito'}
+        </button>
 
-          <button id="botaoQueroVerModal" class="${filme.quero_ver ? 'activo' : ''}">
-            ${filme.quero_ver ? '✓ Remover da lista ver mais tarde' : '👁 Ver mais tarde'}
-          </button>
+        <button id="botaoQueroVerModal" class="${filme.quero_ver ? 'activo' : ''}">
+          ${filme.quero_ver ? '✓ Remover da lista ver mais tarde' : '👁 Ver mais tarde'}
+        </button>
 
-          <button id="botaoApagarModal">🗑 Remover filme</button>
-        </div>
+        <button id="botaoApagarModal">🗑 Remover filme</button>
+      </div>
     `;
+
+    // --- LOGICA DO TRAILER ATUALIZADA E FORA DO STRING TEMPLATE ---
+    const trailerContainer = document.getElementById('trailerContainer');
+    const movieTrailer = document.getElementById('movieTrailer');
+
+    if (filme && filme.trailer_url) {
+      movieTrailer.src = filme.trailer_url;
+      trailerContainer.style.display = 'block'; // Mostra a secção do trailer no modal
+    } else {
+      movieTrailer.src = '';
+      trailerContainer.style.display = 'none';  // Oculta caso não exista trailer
+    }
 
     document.getElementById('botaoFavoritoModal').addEventListener('click', () => alternarFavoritoModal(filme.id));
     document.getElementById('botaoApagarModal').addEventListener('click', () => apagarFilmeModal(filme.id));
@@ -254,6 +268,13 @@ async function abrirModal(filmeId) {
 
 function fecharModal() {
   document.getElementById('modalOverlay').classList.remove('aberto');
+  
+  // Limpar o trailer para parar a reprodução de áudio em background imediatamente
+  const movieTrailer = document.getElementById('movieTrailer');
+  const trailerContainer = document.getElementById('trailerContainer');
+  if (movieTrailer) movieTrailer.src = '';
+  if (trailerContainer) trailerContainer.style.display = 'none';
+
   filmeAtualId = null;
 }
 
