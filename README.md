@@ -142,37 +142,39 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/filmes.png" alt="link: http://127.0.0.1:8000/filmes/, no browser"/>
 </p>
 
-5. Abrir no browser o ficheiro index.html localizado na pasta scripts/biblioteca-digital/frontend.
+5. No terminal, na pasta frontend, correra a seguinte linha de código:```python3 -m https.server 5500```
+
+7. Abrir no browser o link http://localhost:5500/
 
 <p align="center"> 
   <img src="assets/site_inicial.png" alt="Gestor de Biblioteca de Filmes"/> 
 </p>
 
-6. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
+8. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
   
 <p align="center">
   <img src="assets/adicao_pesquisa_filme_site.png" alt="Pesquisa de um filme" />
 </p>
 
-7. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
+9. Ao clicar no filme desejado, o ficheiro schemas.py reúne os seus metadados e o filme é adicionado à biblioteca. O programa também adiciona outros dados, como a data em que o filme foi adicionado à biblioteca.
 
 <p align="center">
   <img src="assets/adicao_filme_site.png" alt="Adicao do filme escolhido com sucesso" />
 </p>
 
-8. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
+10. Se o filme já estiver na biblioteca, ou caso o utilizador pretenda remover um filme dela, isto é resolvido através do ficheiro crud.py. No caso do filme já estar na biblioteca, a página web exibe uma mensagem que informe isso ao utilizador.
 
 <p align="center">
   <img src="assets/tentativa_adicao_filme_repetido.png" alt="Adicao do filme escolhido sem sucesso, devido a já estar incluido" />
 </p>
 
-9. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
+11. Ainda no crud.py, se o utilizador pretender pesquisar por um filme já presente na biblioteca, pode usar a função de pesquisa.
 
 <p align="center">
   <img src="assets/filtro_nome_site.png" alt="Pesquisa/filtragem de um filme pelo seu nome" />
 </p>
 
-10. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
+12. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
 
 <p align="center">
   <img src="assets/filtro_acao_site.png" alt="Pesquisa/filtragem de um filme pelo seu gênero" />
@@ -184,7 +186,7 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/filtro_favoritos_site.png" alt="Pesquisa/filtragem de um filme pela caracterização de ser um favorito do utilizador" />
 </p>
 
-11. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
+13. Por fim, quando pretender sair, abrir o terminal e premir as teclas ctrl + C. Isto irá terminar a conexão do docker.
 
 Nota: O comando ```docker compose up --build``` só é necessário na primeira vez. Nas próximas vezes que se utilizar a biblioteca, basta escrever ```docker compose up```, sem a parte "--build".
 
