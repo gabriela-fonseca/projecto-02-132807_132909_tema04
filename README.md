@@ -1,9 +1,9 @@
 # [Gestor de Biblioteca de Media com Metadados Automatizados]
 
 Com tanta informação digital, seja de assuntos sérios, como trabalhos científicos, reportagens... ou de assuntos menos importantes como livros, filmes (ou suas características), informações de jogos... os utilizadores necessitam cada vez mais de organizar todos estes conteúdos digitais. Apesar disso, não é fácil reunir toda a informação dispersa pela internet, quanto mais organizá-la. Mesmo assim, continua a ser importante a criação de um sistema centralizado para gestão de bibliotecas pessoais. 
-Neste contexto, este projeto aborda o desenvolvimento de uma aplicação de gestão de biblioteca de media (filmes e/ou livros). Nesta é possivel adicionar títulos pelo utilizador com enriquecimento automático de dados.
+Neste contexto, este projeto aborda o desenvolvimento de uma aplicação de gestão de biblioteca de media (filmes). Nesta é possivel adicionar títulos pelo utilizador com enriquecimento automático de dados.
 
-Para este projeto foram escolhidas as APIs externas The Movie Database (TMDB) e Google Books, para organização de filmes e livros, respetivamente. O gestor de biblioteca de media com metadados automatizados utiliza a respetiva API externa, por exemplo a The Movie Database para filmes, para organizar uma biblioteca com os filmes do utilizador, armazenando os metadados ricos desse filme como o título, género, cartaz, sinopse, etc... Isto foi feito através de código backend escrito em Python (linguagem escolhida por nós, mas também podia ser em Java ou outra linguagem de programação adequada), ficheiros Docker, e uma base de dados SQL que é responsável por armazenar os filmes (ou livros) e os seus metadados.
+Para este projeto foi escolhida a API externa The Movie Database (TMDB), para organização de filmes. O gestor de biblioteca de media com metadados automatizados utiliza esta API externa para organizar uma biblioteca com os filmes do utilizador, armazenando os metadados ricos desse filme como o título, género, cartaz, sinopse, trailer, etc... Isto foi feito através de código backend escrito em Python (linguagem escolhida por nós, mas também podia ser em Java ou outra linguagem de programação adequada), ficheiros Docker, e uma base de dados SQL que é responsável por armazenar os filmes e os seus metadados.
 
 Quando ao frontend, este fornece a parte visual do gestor de biblioteca, a parte que o utilizador realmente vê. Além de mostrar os filmes armazenados numa galeria visual, também é possível utilizar uma ferramenta de pesquisa com função de filtros, para pesquisar por filmes, por exemplo, lançados em uma certa data, ou de um género específico, etc... Esta ferramente de pesquisa com filtros funciona de forma semelhante a uma plataforma de streaming, facilitando ao utilizador encontrar o filme que pretende, ou procurar por filmes dentro de uma certa categoria. Para desenvolver esta galeria visual, utilizaram-se linguagens de programação como HTML (para criar o "corpo" dessa galeria), JavaScript (para programar funções como as de adicionar/remover filmes e de pesquisa com filtros) e CSS (para criar a parte visual).
 
@@ -20,11 +20,11 @@ O diagrama a seguir ilustra a arquitetura do projeto:
 
 Começando pelo **Frontend**, este consiste na interface com a qual o utilizador interage. É nesta camada que o utilizador realiza as ações pretendidas para obter as informações ou funcionalidades disponibilizadas pelo sistema. Estas ações são convertidas em pedidos HTTP, que são posteriormente enviados para o backend.
 
-O **Spring Boot (Controller)** é responsável por receber os pedidos HTTP provenientes do Frontend. Ao receber um pedido, extrai os parâmetros necessários e encaminha a informação para a camada seguinte, denominada **Service Layer**.
+O **FastAPI (Routers)** é responsável por receber os pedidos HTTP provenientes do Frontend. Ao receber um pedido, extrai os parâmetros necessários e encaminha a informação para a camada seguinte, denominada **camada de lógica de negócio (crud.py)**.
 
-Ao chegarmos ao **Service Layer**, encontramos a lógica de negócio da aplicação. É nesta camada que são tomadas decisões como verificar se um filme já existe na base de dados, determinar se deve ser guardado, processar e transformar dados recebidos ou decidir qual a API externa a consultar. Em outras palavras, esta camada coordena e gere o funcionamento interno da aplicação.
+Ao chegarmos a esta camada, encontramos a lógica de negócio da aplicação. É nesta camada que são tomadas decisões como verificar se um filme já existe na base de dados, determinar se deve ser guardado, processar e transformar dados recebidos ou decidir qual a API externa a consultar. Em outras palavras, esta camada coordena e gere o funcionamento interno da aplicação.
 
-De seguida, o fluxo passa para o **JPA Repository**, responsável pelo acesso e gestão dos dados. Esta camada funciona como intermediária entre a lógica de negócio e a base de dados, permitindo guardar, consultar, atualizar e remover informação sem necessidade de escrever consultas SQL manualmente.
+De seguida, o fluxo passa para o **SQLAlchemy (ORM)**, responsável pelo acesso e gestão dos dados. Esta camada funciona como intermediária entre a lógica de negócio e a base de dados, permitindo guardar, consultar, atualizar e remover informação sem necessidade de escrever consultas SQL manualmente.
 
 Por fim, encontramos o **PostgreSQL**, onde os dados são armazenados de forma permanente. Desta maneira, mesmo após o encerramento ou reinício da aplicação, toda a informação guardada continua disponível para futuras utilizações.
 
@@ -142,7 +142,7 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/filmes.png" alt="link: http://127.0.0.1:8000/filmes/, no browser"/>
 </p>
 
-5. No terminal, na pasta frontend, correra a seguinte linha de código:```python3 -m https.server 5500```
+5. No terminal, na pasta frontend, correr a seguinte linha de código: ```python3 -m http.server 5500```
 
 7. Abrir no browser o link http://localhost:5500/
 
@@ -174,7 +174,7 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/filtro_nome_site.png" alt="Pesquisa/filtragem de um filme pelo seu nome" />
 </p>
 
-12. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano de lançamento, data de adição à biblioteca, entre outros.
+12. Com as tabelas do ficheiro models.py, o crud.py permite ao utilizador pesquisar por filmes utilizando filtros. Estes filtros incluem título, género, ano mínimo e máximo de lançamento, nota mínima e estado de favorito, podendo ainda ordenar os resultados por data de adição à biblioteca, nota, título ou ano.
 
 <p align="center">
   <img src="assets/filtro_acao_site.png" alt="Pesquisa/filtragem de um filme pelo seu gênero" />
@@ -207,7 +207,7 @@ A imagem abaixo mostra um exemplo de como a biblioteca se parece ao abri-la no b
     </td>
     <td align="center">
       <img src="assets/informacao_filme_site.png" height="180"><br>
-      <sub><b>Informações do filme</b></sub>
+      <sub><b>Informações do filme, incluindo trailer</b></sub>
     </td>
     <td align="center">
       <img src="assets/vermaistarde_site.png" height="180"><br>
