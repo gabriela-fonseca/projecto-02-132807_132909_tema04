@@ -148,7 +148,7 @@ backend-1  |  INFO: Application startup complete.
   <img src="assets/site_inicial.png" alt="Gestor de Biblioteca de Filmes"/> 
 </p>
 
-7. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
+6. Quando o utilizador pesquisa por um filme que pretende adicionar, o programa vai buscar as informações necessárias, ou seja, os metadados dos filmes que podem corresponder ao nome que foi pesquisado, à API externa (neste caso, a TMDB) através do ficheiro tmdb_client.py.
   
 <p align="center">
   <img src="assets/adicao_pesquisa_filme_site.png" alt="Pesquisa de um filme" />
