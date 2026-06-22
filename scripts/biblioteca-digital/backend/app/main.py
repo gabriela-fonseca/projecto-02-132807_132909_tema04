@@ -27,3 +27,5 @@ app.include_router(pesquisa.router, prefix="/pesquisa", tags=["Pesquisa TMDB"])
 @app.get("/")
 def raiz():
     return {"status": "ok", "mensagem": "Biblioteca Digital API"}
+    
+

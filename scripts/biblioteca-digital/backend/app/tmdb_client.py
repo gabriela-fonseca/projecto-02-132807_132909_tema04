@@ -40,38 +40,19 @@ async def pesquisar_filmes(titulo: str) -> list[dict]:
         ]
 
 
-async def obter_trailer(tmdb_id: int) -> Optional[str]:
-    if not TMDB_KEY:
-        return None
-    async with httpx.AsyncClient() as client:
-        resp = await client.get(
-            f"{TMDB_BASE}/movie/{tmdb_id}/videos",
-            params={"api_key": TMDB_KEY, "language": LANG},
-            timeout=10,
-        )
-        resp.raise_for_status()
-        videos = resp.json().get("results", [])
+def _extrair_trailer(videos_resultados: list[dict]) -> Optional[str]:
+    """Procura primeiro um Trailer; se não houver, aceita um Teaser. Ambos têm de estar no YouTube."""
+    candidatos_youtube = [v for v in videos_resultados if v.get("site") == "YouTube"]
 
-        trailer = next(
-            (v for v in videos if v["site"] == "YouTube" and v["type"] == "Trailer"),
-            None,
-        )
+    trailer = next((v for v in candidatos_youtube if v.get("type") == "Trailer"), None)
+    if trailer:
+        return f"https://www.youtube.com/embed/{trailer['key']}"
 
-        if not trailer:
-            resp_en = await client.get(
-                f"{TMDB_BASE}/movie/{tmdb_id}/videos",
-                params={"api_key": TMDB_KEY},
-                timeout=10,
-            )
-            videos_en = resp_en.json().get("results", [])
-            trailer = next(
-                (v for v in videos_en if v["site"] == "YouTube" and v["type"] == "Trailer"),
-                None,
-            )
+    teaser = next((v for v in candidatos_youtube if v.get("type") == "Teaser"), None)
+    if teaser:
+        return f"https://www.youtube.com/embed/{teaser['key']}"
 
-        if trailer:
-            return f"https://www.youtube.com/embed/{trailer['key']}"
-        return None
+    return None
 
 
 async def obter_detalhes_filme(tmdb_id: int) -> Optional[dict]:
@@ -80,7 +61,11 @@ async def obter_detalhes_filme(tmdb_id: int) -> Optional[dict]:
     async with httpx.AsyncClient() as client:
         resp = await client.get(
             f"{TMDB_BASE}/movie/{tmdb_id}",
-            params={"api_key": TMDB_KEY, "language": LANG},
+            params={
+                "api_key": TMDB_KEY,
+                "language": LANG,
+                "append_to_response": "videos",
+            },
             timeout=10,
         )
         resp.raise_for_status()
@@ -89,7 +74,19 @@ async def obter_detalhes_filme(tmdb_id: int) -> Optional[dict]:
         genero_id = m["genres"][0]["id"] if m.get("genres") else None
         genero_nome = m["genres"][0]["name"] if m.get("genres") else None
 
-        trailer_url = await obter_trailer(tmdb_id)
+        videos_resultados = m.get("videos", {}).get("results", [])
+        trailer_url = _extrair_trailer(videos_resultados)
+
+        # Se não houver vídeo em português, repete o pedido sem filtro de idioma
+        if not trailer_url:
+            resp_en = await client.get(
+                f"{TMDB_BASE}/movie/{tmdb_id}",
+                params={"api_key": TMDB_KEY, "append_to_response": "videos"},
+                timeout=10,
+            )
+            m_en = resp_en.json()
+            videos_en = m_en.get("videos", {}).get("results", [])
+            trailer_url = _extrair_trailer(videos_en)
 
         return {
             "tmdb_id": m["id"],
